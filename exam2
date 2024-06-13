@@ -1,0 +1,81 @@
+Rafael Cedano 
+exam 2 make up jun 13
+household pulse data 
+
+Question 1:
+we want to see what the data tells us about the relationship between loneliness reported and different age groups.
+
+The null hypothesis is that there is no difference in loneliness among (15-25) yo's and (55-65) yo's . (0 means always lonely and 1 means sometimes lonely) 
+
+The alternative hypothesis is that there is a difference in loneliness among them.
+Sig level:  0.05
+(15-25) (55-65) 
+0 1699 11997 
+1 569 1204 
+569/2268 = 0.251 
+1204/13201 = 0.091 
+0.251 - 0.091 = 0.16
+
+Estimate: 0.16
+SE: 0.0094
+T-stat: 16.91
+P value: 0.0001 
+95% CI: (0.141, 0.178)
+
+The results of this hypothesis test indicate that there is a difference in loneliness reported between both groups and with the low p value, we can reject the null hypothesis. Results show a higher proportion of individuals in the 55-65 age group reported being lonely “always”. And a higher proportion of individuals in the 15-65 age group reported being lonely “usually.”  
+--------------------------------
+Question 2:
+For this question, I want to see how education level impacts marriage status. 
+
+The null hypothesis is that there is no impact in marriage status regarding education level. 
+The alternative hypothesis is that there is an impact in marriage status regarding education level 
+Sig level: 0.05
+
+Married		Never married
+No degree 		15022 		6017
+Degree 		20927			6425
+			
+Total no degree: 21039
+Total degree: 27352	
+
+P1: 15022/21039 = 0.714
+P2: 20927/27352 = 0.765
+
+Estimate: -0.051
+SE= 0.0054
+T-stat = -9.44
+P val  = 0
+95% CI = (-0.061, -0.041)
+
+These result tells that education does have a significant impact on marriage status. Therefore, we reject the null. A higher proportion of married individuals have a degree or more compared to non-married individuals. 
+-----------------------------
+Question 3:
+
+Another variable that can be relevant in predicting loneliness reports is how often the socially interact with family friends and neighbors. 
+> Household_Pulse_data$lonely <- as.numeric(
++     (Household_Pulse_data$SUPPORT1 == "always lonely") |
++         (Household_Pulse_data$SUPPORT1 == "usually") )
+> levels(Household_Pulse_data$SUPPORT1)
+[1] "NA"                                                          
+[2] "talk on phone w family friends neighbors less than once week"
+[3] "1 or 2 per week"                                             
+[4] "3 or 4 per week"                                             
+[5] "5 + per week"       
+
+model1 <- lm(lonely ~ support1 + mental_health, data = Household_Pulse_data)
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.6568 -0.4339 -0.2516  0.5118  0.8041 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    0.87965    0.18696   4.705 8.43e-06 ***
+support1      -0.03967    0.01820  -2.180   0.0317 *  
+mental_health -0.03210    0.03506  -0.916   0.3621    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4872 on 97 degrees of freedom
+Multiple R-squared:  0.06072,	Adjusted R-squared:  0.04136 
+F-statistic: 3.136 on 2 and 97 DF,  p-value: 0.04791
+the variable Support1 indicates that as the higher support scores are, the lower loneliness is reported; it shows a negative relationship. The estimates are plausible 
