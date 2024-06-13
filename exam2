@@ -62,7 +62,7 @@ Another variable that can be relevant in predicting loneliness reports is how of
 [4] "3 or 4 per week"                                             
 [5] "5 + per week"       
 
-model1 <- lm(lonely ~ support1 + mental_health, data = Household_Pulse_data)
+model1 <- lm(lonely ~ support1 + mhlth_need, data = Household_Pulse_data)
 Residuals:
     Min      1Q  Median      3Q     Max 
 -0.6568 -0.4339 -0.2516  0.5118  0.8041 
@@ -71,11 +71,22 @@ Coefficients:
               Estimate Std. Error t value Pr(>|t|)    
 (Intercept)    0.87965    0.18696   4.705 8.43e-06 ***
 support1      -0.03967    0.01820  -2.180   0.0317 *  
-mental_health -0.03210    0.03506  -0.916   0.3621    
+mhlth_need -0.03210    0.03506  -0.916   0.3621    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 0.4872 on 97 degrees of freedom
 Multiple R-squared:  0.06072,	Adjusted R-squared:  0.04136 
 F-statistic: 3.136 on 2 and 97 DF,  p-value: 0.04791
-the variable Support1 indicates that as the higher support scores are, the lower loneliness is reported; it shows a negative relationship. The estimates are plausible 
+The variable Support1 indicates that as the higher support scores are, the lower loneliness is reported; it shows a negative relationship. The estimates are plausible and statistically significant for the variable "support1"
+
+anova(model1)
+Analysis of Variance Table
+
+Response: lonely
+              Df  Sum Sq Mean Sq F value  Pr(>F)  
+support1       1  1.2893 1.28932  5.4324 0.02184 *
+mental_health  1  0.1990 0.19903  0.8386 0.36207  
+Residuals     97 23.0217 0.23734         
+
+Question 5: 
